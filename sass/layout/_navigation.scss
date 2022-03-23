@@ -1,0 +1,179 @@
+// layout/navigation
+.navigation {
+    &__checkbox {
+        display: none;
+    }
+    
+    &__button {
+        // White circle for the menu
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 600;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+
+        // icon
+        text-align: center;
+        cursor: pointer;
+
+        // Decrease size
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+        }
+        
+        @include respond(tab-port) {
+            top: 3rem;
+            right: 3rem;
+        }
+    }
+
+    &__background {
+        // Circle for the menu that expands is hidden behind the white one - green
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        z-index: 200; // only works in elements with position defined
+        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+        // transform: scale(80); // this animation will create the effect of the growing circle (white to green)
+
+        // Decrease size
+        @include respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+        }
+        
+        @include respond(tab-port) {
+            top: 3.5rem;
+            right: 3.5rem;
+        }
+    }
+    
+    &__nav {
+        // Ocupy's the entire viewport
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 400;
+        
+        width: 5%; // PRevent a right glitch
+        opacity: 0; // The navigation is no longer "clickable"
+        transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    &__list {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        list-style: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    &__item {
+        margin: 1rem;
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 220%; // Starting condition of the hover effect
+            transition: all .4s;
+
+            span {
+                margin-right: 1.5rem;
+                display: inline-block;
+            }
+        }
+        
+        &:hover,
+        &:active {
+            background-position: 100%; // Final position of the hover effect
+            color: $color-primary;
+            transform: translateX(1rem); // It needs the display propery set in the link
+        }
+    }
+
+    // Checkbox hack
+    &__checkbox:checked ~ &__background {
+        transform: scale(80);
+    }
+    
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        width: 100%; // The navigation is shown
+    }
+
+    // ICON
+    &__icon {
+        position: relative;
+        margin-top: 3.8rem;
+
+        &,
+        &::before,
+        &::after {
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before {
+            top: -.8rem;
+        }
+
+        &::after {
+            top: .8rem;
+        }
+    }
+
+    &__button:hover &__icon::before {
+        top: -1rem;
+    }
+
+    &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    // transform the icon
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent; // the span element become transparent.
+    }
+    
+    &__checkbox:checked + &__button &__icon::before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+    
+    &__checkbox:checked + &__button &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}

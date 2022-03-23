@@ -1,0 +1,53 @@
+// abstract/mixins
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both; // clears folat left and right
+    }
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+/* --------------------------------
+Breakpoints:
+0px to 600px - phone
+601px to 900px - tablet portrait
+901px to 1200px - tablet landscape
+1201px to 1800px - desktop
++1800px - big desktop
+-----------------------------
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+-------------------------------- 
+ORDER: Base + Typography > general layout + grid > page layout > components
+-------------------------------- 
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        // this allow us to pass a block of code into a mixin
+        @media (max-width: 37.5em) { @content }; // 600px
+    }
+
+    @if $breakpoint == tab-port {
+        @media (max-width: 56.25em) { @content }; // 900px
+    }
+
+    @if $breakpoint == tab-land {
+        @media (max-width: 75em) { @content }; // 1200px
+    }
+
+    @if $breakpoint == big-desktop {
+        @media (min-width: 112.5em) { @content }; // 1800px
+    }
+}

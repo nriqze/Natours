@@ -1,0 +1,201 @@
+// components/card
+.card {
+    // FUNCTIONALITY
+    perspective: 150rem; // The lower the value, more dramatic the effect
+    -moz-perspective: 150rem; // To work in mozzila
+    position: relative;
+    height: 52rem; // Because of positioining this height colapse and so we have to give one
+
+
+    &__side {
+        font-size: 2rem;
+        height: 52rem;
+        transition: all .8s ease; // animates rotation over y axis
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden; // hides the back of the element
+        border-radius: 3px;
+        // To show the border radius that the image was overflowing
+        overflow: hidden;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &--front {
+            background-color: $color-white;
+        }
+
+        &--back {
+            transform: rotateY(180deg);
+
+            &-1 {
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+
+            &-2 {
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }
+
+            &-3 {
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+        }
+    }
+
+    // Rotanting card 180º over y axis
+    // .card:hover .card__side
+    &:hover &__side--front {
+        transform: rotateY(180deg);
+    }
+
+    &:hover &__side--back {
+        transform: rotateY(360deg);
+    }
+
+    // FRONT SIDE STILING
+    &__picture {
+        background-size: cover;
+        height: 23rem;
+        background-blend-mode: screen;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); // Cut the diagonalin the bottom of the image
+
+        &--1 {
+            // background linear gradient and background image to be blended
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+        }
+    }
+
+    &__heading {
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        position: absolute;
+        top: 12rem;
+        right: 2rem;
+        width: 75%;
+    }
+
+    &__heading-span {
+        padding: 1rem 1.5rem;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone; // This property treats those two lines of text as if they where separated elements. In this case two elements with the same padding
+
+        &--1 {
+            background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
+        }
+
+        &--2 {
+            background-image: linear-gradient(to right bottom, rgba($color-primary-light, .85), rgba($color-primary-dark, .85));
+        }
+
+        &--3 {
+            background-image: linear-gradient(to right bottom, rgba($color-tertiary-light, .85), rgba($color-tertiary-dark, .85));
+        }
+    }
+
+    &__details {
+        padding: 3rem;
+
+        ul {
+            list-style: none;
+            width: 80%;
+            margin: 0 auto; // center a block element inside a block element
+
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem;
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+    // BACK SIDE STYLING
+    &__cta {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    &__price-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem;
+    }
+
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value {
+        font-size: 6rem;
+        font-weight: 100;
+    }
+
+    // MEDIA-QUERY
+    @include respond(tab-port) {
+        // FUNCTIONALITY
+        height: auto;
+        border-radius: 3px;
+        background-color: $color-white;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+
+        &__side {
+            height: auto;
+            transition: none; // Removes rotation over y axis
+            position: relative; // Because we haven't two sides anymore.
+            box-shadow: none;
+            
+            &--back {
+                transform: rotateY(0); // Should not rotate anymore
+                clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+            }
+        }
+
+        &:hover &__side--front {
+            transform: rotateY(0); // Should not rotate anymore
+        }
+
+        // FRONT SIDE STYLING
+        &__details {
+            padding: 1rem 3rem;
+        }
+
+        // BACK SIDE STYLING
+        &__cta {
+            position: relative;
+            top: 0;
+            left: 0 ;
+            transform: translate(0);
+            width: 100%;
+            padding: 7rem 4rem 4rem 4rem;
+        }
+
+        &__price-box {
+            margin-bottom: 3rem;
+        }
+
+        &__price-value {
+            font-size: 4rem;
+        }
+
+    }
+}
