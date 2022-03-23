@@ -21,7 +21,7 @@
     transform: skewY(-7deg);
     margin-top: -8rem;
 
-    & > * { // > direct child selector and the * all selector
+    & > * { 
         transform: skewY(7deg);
     }
 
@@ -65,7 +65,7 @@
         transparent 50%), 
         url(../img/nat-10.jpg
     );
-    background-size: 100%; // 100% means the same as cover
+    background-size: 100%; 
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
 

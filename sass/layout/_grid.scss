@@ -1,49 +1,43 @@
 // layout/grid
 .row {
-    max-width: $grid-width; // the current standard is 1140px that we convert into 114rem because 10px = 1rem
+    max-width: $grid-width;
     margin: 0 auto;
 
-    // Change the max-with of the row because in smaller devices it's bigger than the viewport
     @include respond(tab-port) {
         max-width: 50rem;
         padding: 0 3rem;
     }
 
-    // Remove the margin of the last row
-    // This pseudo:class selects everything but NOT the last-child. This means that every row have a margin-bottom of 8rem except the last row.
     &:not(:last-child) {
         margin-bottom: $gutter-vertical;
 
-        // Decrease vertical gutter from columns
         @include respond(tab-port) {
             margin-bottom: $gutter-vertical-small;
         }
     }
 
     // Clearfix
-    @include clearfix; // abstract/mixins. Clears the float
+    @include clearfix;
 
-    [class^="col-"] {  // We select all class attributes that start with col-. ^ means start. $ - end. * - contain.
-        float: left; // float makes height colapse and we fix that using the clearfix hack.
+    [class^="col-"] { 
+        float: left;
 
         &:not(:last-child) {
             margin-right: $gutter-horizontal;
 
-            // Remove horizontal gutter from columns
             @include respond(tab-port) {
                 margin-right: 0;
                 margin-bottom: $gutter-vertical-small;
             }
         }
 
-        // Set width of all columns to 100%, this transform columns into rows
         @include respond(tab-port) {
             width: 100% !important;
         }
     }
 
     .col-1-of-2 {
-        width: calc((100% - #{$gutter-horizontal}) / 2); // 100% of width - gutter / 2
+        width: calc((100% - #{$gutter-horizontal}) / 2); 
     }
 
     .col-1-of-3 {

@@ -7,11 +7,11 @@
     width: 100%;
     z-index: -1;
     opacity: .15;
-    overflow: hidden; // hide the sides of the video
+    overflow: hidden;
 
     &__content {
         height: 100%;
         width: 100%;
-        object-fit: cover; // The video fit in the parent element maintaining the aspect-ratio.
+        object-fit: cover;
     }
 }

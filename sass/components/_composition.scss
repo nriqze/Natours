@@ -9,7 +9,7 @@
         position: absolute;
         z-index: 10;
         transition: all .2s;
-        outline-offset: 2rem; // The space between the outline and the element
+        outline-offset: 2rem;
 
         &--p1 {
             left: 0;
@@ -27,15 +27,13 @@
         }
 
         &:hover {
-            outline: 1.5rem solid $color-primary; // outline is similar to a border but we can set an offset
+            outline: 1.5rem solid $color-primary;
             transform: scale(1.05) translateY(-.5rem);
             box-shadow: 0 2.5rem 4rem rgba($color-black, .5);
             z-index: 20;
         }
     }
 
-    // composition:hover composition__photo:not(:hover) {}
-    // scale down the images that are not hovered
     &:hover &__photo:not(:hover) {
         transform: scale(0.9);
     }
@@ -43,7 +41,7 @@
     @include respond(tab-port) {
         &__photo {
             float: left;
-            position: relative; // change the position property
+            position: relative;
             width: 33.33333333333333%;
             box-shadow: 0 1.5rem 3rem rgba($color-black, .2);
             outline-offset: 1.3rem;

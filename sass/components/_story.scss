@@ -6,9 +6,9 @@
     background-color: rgba($color-white, .6);
     border-radius: 3px;
     padding: 6rem;
-    padding-left: 9rem; // to add the -3rem of the shape 
+    padding-left: 9rem;
     font-size: $default-font-size;
-    transform: skewX(-12deg); // skew the container
+    transform: skewX(-12deg);
 
     @include respond(tab-port) {
         width: 100%;
@@ -23,15 +23,15 @@
     &__shape {
         width: 15rem;
         height: 15rem;
-        float: left; // In order to make the content around it
+        float: left;
         
         -webkit-shape-outside: circle(50% at 50% 50%); 
-        shape-outside: circle(50% at 50% 50%); // circle(height at centerHorizontaly centrerVerticaly)
+        shape-outside: circle(50% at 50% 50%);
 
         -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%); // To give the circle form
+        clip-path: circle(50% at 50% 50%);
 
-        transform: translateX(-3rem) skewX(12deg); // To give spave between the figure and the text. It's better not to mess with margin or pading in floated elements
+        transform: translateX(-3rem) skewX(12deg);
 
         position: relative;
 
@@ -41,13 +41,13 @@
     }
 
     &__img {
-        height: 100%; // floated imgs has to have a width
+        height: 100%;
         transform: translateX(-4rem) scale(1.4);
         transition: all, .5s;
     }
 
     &__text {
-        transform: skewX(12deg); // skew the container
+        transform: skewX(12deg);
 
         @include respond(phone) {
             transform: skewX(0);
@@ -55,7 +55,6 @@
     }
 
     &__caption {
-        // center text
         position: absolute;
         top: 50%;
         left: 50%;

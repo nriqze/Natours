@@ -51,9 +51,7 @@ ORDER: Base + Typography > general layout + grid > page layout > components
   padding: 0;
   box-sizing: inherit; }
 
-/* the root font size is set in the html. This defines what 1rem is */
 html {
-  /* font-size: 10px; 1 rem is the root font-size, so it's 10px */
   font-size: 62.5%; }
   @media (max-width: 75em) {
     html {
@@ -65,7 +63,6 @@ html {
     html {
       font-size: 75%; } }
 
-/* Project font definitiions that will be inherit */
 body {
   box-sizing: border-box;
   padding: 3rem; }
@@ -76,7 +73,6 @@ body {
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
-  /* font-size: 16px; */
   line-height: 1.7;
   color: #777; }
 
@@ -92,11 +88,7 @@ body {
     letter-spacing: 3.5rem;
     animation-name: moveInLeft;
     animation-duration: 1s;
-    animation-timing-function: ease-out;
-    /* 
-        animation-iteration-count: 3;
-        animation-delay: 3s;
-        */ }
+    animation-timing-function: ease-out; }
     @media (max-width: 37.5em) {
       .heading-primary--main {
         letter-spacing: 1rem;
@@ -602,27 +594,22 @@ body {
     color: #55c57a; }
   @media (max-width: 75em) {
     .popup__content {
-      display: block;
       position: relative; }
     .popup__left {
       width: 100%;
-      display: table-row; }
+      display: table; }
     .popup__right {
       width: 100%;
       display: block; }
     .popup__img {
       width: 50%;
-      float: left; }
-    .popup__img::after {
-      clear: both; } }
+      float: left; } }
   @media (max-width: 56.25em) {
     .popup__content {
-      width: 85%;
-      display: block; } }
+      width: 85%; } }
   @media (max-width: 37.5em) {
     .popup__content {
-      width: 100%;
-      display: block; }
+      width: 100%; }
     .popup__text {
       text-align: justify;
       -moz-column-count: 1;
@@ -786,7 +773,6 @@ body {
 
 .header {
   height: 95vh;
-  /* 95% of the height of the viewport*/
   background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
   background-size: cover;
   background-position: top;
