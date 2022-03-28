@@ -16,12 +16,21 @@
         rgba($color-primary-light, 0.8),
         rgba($color-primary-dark, 0.8)
         ),
-        url(../img/nat-4.jpg);
+        url(../img/nat-4-small.jpg);
     background-size: cover;
     transform: skewY(-7deg);
     margin-top: -8rem;
 
-    & > * { 
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+        background-image: linear-gradient(
+        to right bottom,
+        rgba($color-primary-light, 0.8),
+        rgba($color-primary-dark, 0.8)
+        ),
+        url(../img/nat-4.jpg);
+    }
+
+    & > * { // > direct child selector and the * all selector
         transform: skewY(7deg);
     }
 
@@ -65,7 +74,7 @@
         transparent 50%), 
         url(../img/nat-10.jpg
     );
-    background-size: 100%; 
+    background-size: 100%; // 100% means the same as cover
     border-radius: 3px;
     box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
 

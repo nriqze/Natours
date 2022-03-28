@@ -1,8 +1,10 @@
 // base/utilities
+// center inline element inside a block element
 .u-center-text {
     text-align: center !important;
 }
 
+// Adds margin bottom to whatever element
 .u-margin-bottom-big {
     margin-bottom: 8rem !important;
 
@@ -23,6 +25,7 @@
     margin-bottom: 1.5rem !important;
 }
 
+// Adds margin top to whatever element
 .u-margin-top-huge {
     margin-top: 10rem !important;
 }

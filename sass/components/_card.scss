@@ -1,22 +1,23 @@
 // components/card
 .card {
     // FUNCTIONALITY
-    perspective: 150rem;
-    -moz-perspective: 150rem;
+    perspective: 150rem; // The lower the value, more dramatic the effect
+    -moz-perspective: 150rem; // To work in mozzila
     position: relative;
-    height: 52rem;
+    height: 52rem; // Because of positioining this height colapse and so we have to give one
 
 
     &__side {
         font-size: 2rem;
         height: 52rem;
-        transition: all .8s ease;
+        transition: all .8s ease; // animates rotation over y axis
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        backface-visibility: hidden;
+        backface-visibility: hidden; // hides the back of the element
         border-radius: 3px;
+        // To show the border radius that the image was overflowing
         overflow: hidden;
         box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
 
@@ -41,6 +42,8 @@
         }
     }
 
+    // Rotanting card 180º over y axis
+    // .card:hover .card__side
     &:hover &__side--front {
         transform: rotateY(180deg);
     }
@@ -55,18 +58,42 @@
         height: 23rem;
         background-blend-mode: screen;
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); // Cut the diagonalin the bottom of the image
 
         &--1 {
-            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+            // background linear gradient and background image to be blended
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5-small.jpg);
         }
 
         &--2 {
-            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6-small.jpg);
         }
 
         &--3 {
-            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7-small.jpg);
+        }
+
+        @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em), (min-width: 125em) {
+            &--1 {
+                background-image: linear-gradient(to right bottom, 
+                    $color-secondary-light, 
+                    $color-secondary-dark), 
+                    url(../img/nat-5.jpg);
+            }
+    
+            &--2 {
+                background-image: linear-gradient(to right bottom, 
+                    $color-primary-light, 
+                    $color-primary-dark), 
+                    url(../img/nat-6.jpg);
+            }
+    
+            &--3 {
+                background-image: linear-gradient(to right bottom, 
+                    $color-tertiary-light, 
+                    $color-tertiary-dark), 
+                    url(../img/nat-7.jpg);
+            }
         }
     }
 
@@ -85,7 +112,7 @@
     &__heading-span {
         padding: 1rem 1.5rem;
         -webkit-box-decoration-break: clone;
-        box-decoration-break: clone;
+        box-decoration-break: clone; // This property treats those two lines of text as if they where separated elements. In this case two elements with the same padding
 
         &--1 {
             background-image: linear-gradient(to right bottom, rgba($color-secondary-light, .85), rgba($color-secondary-dark, .85));
@@ -106,7 +133,7 @@
         ul {
             list-style: none;
             width: 80%;
-            margin: 0 auto;
+            margin: 0 auto; // center a block element inside a block element
 
             li {
                 text-align: center;
@@ -147,7 +174,9 @@
     }
 
     // MEDIA-QUERY
-    @include respond(tab-port) {
+    // @include respond(tab-port)
+    @media only screen and (max-width: 56.25em),
+    only screen and (hover: none) {
         // FUNCTIONALITY
         height: auto;
         border-radius: 3px;
@@ -156,18 +185,18 @@
 
         &__side {
             height: auto;
-            transition: none;
-            position: relative;
+            transition: none; // Removes rotation over y axis
+            position: relative; // Because we haven't two sides anymore.
             box-shadow: none;
             
             &--back {
-                transform: rotateY(0);
+                transform: rotateY(0); // Should not rotate anymore
                 clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
             }
         }
 
         &:hover &__side--front {
-            transform: rotateY(0);
+            transform: rotateY(0); // Should not rotate anymore
         }
 
         // FRONT SIDE STYLING
