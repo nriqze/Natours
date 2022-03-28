@@ -2,6 +2,7 @@
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
+    /* font-size: 16px; */
     line-height: 1.7;
     color: $color-grey-dark;
 }
@@ -23,10 +24,16 @@ body {
         animation-duration: 1s;
         animation-timing-function: ease-out;
 
+        // Decrease typography
         @include respond(phone) {
             letter-spacing: 1rem;
             font-size: 5rem;
         }    
+    
+        /* 
+        animation-iteration-count: 3;
+        animation-delay: 3s;
+        */
     }
 
     &--sub {
@@ -35,6 +42,7 @@ body {
         font-weight: 700;
         letter-spacing: 1.75rem;
 
+        // Decrease typography
         @include respond(phone) {
             letter-spacing: .5rem;
         }
@@ -47,18 +55,20 @@ body {
     font-size: 3.5rem;
     text-transform: uppercase;
     font-weight: 700;
-    display: inline-block;
-    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-    -webkit-background-clip: text;
+    display: inline-block; // display the green only within the width of the element
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark); // set the green gradient
+    -webkit-background-clip: text; // clips the backgrount to where the text seats, so, the background-image will only be visible where the text is.
     background-clip: text;
-    color: transparent;
+    color: transparent; // we set transparent so we can see the background gradient.
     letter-spacing: 2px;
     transition: all .2s;
 
+    // Decrease typography
     @include respond(tab-port) {
         font-size: 3rem;
     }
     
+    // Decrease typography
     @include respond(phone) {
         font-size: 2.5rem;
     }
@@ -66,6 +76,7 @@ body {
     &:hover {
         transform: skewY(2deg) skewX(15deg) scale(1.1);
         text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
+        // text-shadow: .5rem 1rem 2rem rgba($color-black, .2);
     }
 }
 

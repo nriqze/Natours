@@ -9,6 +9,14 @@
     z-index: 800;
     transition: all .3s;
 
+    // Checks if the backdrop-filter property exists and if exists, it run the code inside the block.
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px); // This property is applied to the element that is behind the selected element
+        background-color: rgba($color-black, .3);
+    }
+
+    // hide the popup
     opacity: 0;
     visibility: hidden;
 
@@ -20,24 +28,27 @@
         box-shadow: 0 2rem 4rem rgba($color-black, .2);
         border-radius: 3px;
 
-        display: table;
+        display: table; // The parent element have to be set to display table so that the children elements can set the display property to table-cell. The browser will give them automatically the same height.
 
-        overflow: hidden;
+        overflow: hidden; // To hide the image behind the container and actually see the round border.
 
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(.25);
-        transition: all .3s;
+        // scale down the content to scale up when the content opens. Zoom-in effect.
+        opacity: 0; // initialy the popup's content isn't visible
+        transform: translate(-50%, -50%) scale(.25); // We have to repeat the translate property that is in the mixin, so the scale works, because this transform overides the transform in the mixin.
+        transition: all .3s; //animation
     }
 
     &__left {
         width: 33.33333%;
+        // We want that this box have the same height as the right one. For that we simulate a teble
         display: table-cell;
     }
 
     &__right {
         width: 66.66667%;
+        // We want that this box have the same height as the left one. For that we simulate a teble
         display: table-cell;
-        vertical-align: middle;
+        vertical-align: middle; // We use this property on tables to align the element verticaly
         padding: 3rem 5rem;
     }
 
@@ -51,28 +62,31 @@
         margin-bottom: 4rem;
 
         -moz-column-count: 2;
-        column-count: 2;
+        column-count: 2; // We specify the number of columns that we want and the text is set automaticaly.
         -moz-column-gap: 4rem;
-        column-gap: 4rem;
+        column-gap: 4rem; // default is 1em = font-size = 14px
         -moz-column-rule: 1px solid $color-grey-light-2;
         column-rule: 1px solid $color-grey-light-2;
 
         -moz-hyphens: auto;
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
-        hyphens: auto;
+        hyphens: auto; // For this to work, the language has to be set in the head of the html doccument
     }
 
+    // make the popup visible
     &:target {
         opacity: 1;
         visibility: visible;
     }
 
+    // Style content (popup zoom-in) when the popup opens. The popup becomes a target and we style the child element.
     &:target &__content {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
     }
 
+    // close popup when hit button
     &__close {
         &:link,
         &:visited {
@@ -84,7 +98,7 @@
             text-decoration: none;
             display: inline-block;
             transition: all .2s;
-            line-height: 1;
+            line-height: 1; // without this property we could not position the element correctly
         }
 
         &:hover {
@@ -93,10 +107,6 @@
     }
 
     @include respond(tab-land) {
-        &__content {
-            position: relative;
-        }
-
         &__left {
             width: 100%;
             display: table;
